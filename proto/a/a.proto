@@ -1,0 +1,13 @@
+package a
+ 
+
+message DirectionsRequest {
+    required b.ProviderEnum provider = 1;
+    string origin = 2;
+    string destination = 3;
+    optional string language = 4;
+    string mode = 5;
+  }
+  
+
+

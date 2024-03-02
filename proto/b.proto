@@ -1,0 +1,8 @@
+package b
+
+enum ProviderEnum {
+UNKNOWN = 0         ;
+EMDDI = 1           ;
+GOOGLE = 2          ;
+}
+ 
