@@ -7,7 +7,7 @@ import (
 	signupusecase "kanlam/use-case/auth.use-case/sign-up.use-case"
 )
 
-func SignUp(c *fiber.Ctx) error {
+func signUp(c *fiber.Ctx) error {
 	signUp := new(signupusecase.SignUpUseCase)
 
 	if err := c.BodyParser(signUp); err != nil {

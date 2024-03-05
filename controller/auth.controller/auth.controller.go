@@ -5,5 +5,7 @@ import (
 )
 
 func SetupAuthController(app *fiber.App) {
-	app.Post("/auth/register", SignUp)
+	app.Post("/auth/sign-up", signUp)
+
+	app.Post("/auth/sign-in", signIn)
 }
