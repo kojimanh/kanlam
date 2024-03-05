@@ -1,8 +1,7 @@
 package authdto
 
 type SignUpInputDto struct {
-	Username string `json:"username",validate:"required"`
-	Password string `json:"password",validate:"required"`
+	UsernameAndPasswordDto
 }
 
 type SignUpOutputDto struct {
