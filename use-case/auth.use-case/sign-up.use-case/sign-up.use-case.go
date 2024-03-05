@@ -5,12 +5,12 @@ import (
 )
 
 type SignUpUseCase struct {
-	authdto.RegisterInputDto
+	authdto.SignUpInputDto
 	Id             string
 	HashedPassword string
 }
 
-func (r *SignUpUseCase) SignUp() (*authdto.RegisterOutputDto, error) {
+func (r *SignUpUseCase) SignUp() (*authdto.SignUpOutputDto, error) {
 	if validateErr := r.validateInput(); validateErr != nil {
 		return nil, validateErr
 	}
@@ -23,7 +23,7 @@ func (r *SignUpUseCase) SignUp() (*authdto.RegisterOutputDto, error) {
 		return nil, insertErr
 	}
 
-	result := authdto.RegisterOutputDto{
+	result := authdto.SignUpOutputDto{
 		Id:       r.Id,
 		Username: r.Username,
 	}

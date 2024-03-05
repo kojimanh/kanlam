@@ -1,11 +1,11 @@
 package authdto
 
-type RegisterInputDto struct {
+type SignUpInputDto struct {
 	Username string `json:"username",validate:"required"`
 	Password string `json:"password",validate:"required"`
 }
 
-type RegisterOutputDto struct {
+type SignUpOutputDto struct {
 	Id       string `json:"id"`
 	Username string `json:"username"`
 }
