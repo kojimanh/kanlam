@@ -1,16 +1,24 @@
 package signupusecase
 
 import (
-	"fmt"
+	"errors"
 	userstorage "kanlam/storage/maindb/user.storage"
 )
 
 func (r *SignUpUseCase) checkExistedUsername(username string) error {
-	userStorage := new(userstorage.StructUserStorage)
+	user, err := userstorage.UserStorage.GetByUsername(username)
 
-	user, err := userStorage.GetByUsername(username)
+	if err == nil && user == nil {
+		return nil
+	}
 
-	fmt.Println(user.Id)
+	if err != nil {
+		return errors.New("Failed while check existed")
+	}
+
+	if user.Id != "" {
+		return errors.New("User existed")
+	}
 
 	return err
 }

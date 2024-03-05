@@ -3,6 +3,7 @@ package userstorage
 import (
 	"context"
 	"errors"
+	"github.com/jackc/pgx/v5"
 	storage "kanlam/storage/maindb"
 )
 
@@ -11,8 +12,14 @@ func (r StructUserStorage) GetByUsername(username string) (*User, error) {
 
 	user := new(User)
 
-	if err := storage.MainPool.QueryRow(context.Background(), sql, username).Scan(&user.Id, &user.Username, &user.Password); err != nil {
-		return user, errors.New("User not existed")
+	err := storage.MainPool.QueryRow(context.Background(), sql, username).Scan(&user.Id, &user.Username, &user.Password)
+
+	if errors.Is(err, pgx.ErrNoRows) {
+		return nil, nil
+	}
+
+	if err != nil {
+		return nil, err
 	}
 
 	return user, nil

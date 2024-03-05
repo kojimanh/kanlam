@@ -1,9 +1,13 @@
 package signupusecase
 
-import authdto "kanlam/entity/dto/auth.dto"
+import (
+	authdto "kanlam/entity/dto/auth.dto"
+)
 
 type SignUpUseCase struct {
 	authdto.RegisterInputDto
+	Id             string
+	HashedPassword string
 }
 
 func (r *SignUpUseCase) SignUp() (*authdto.RegisterOutputDto, error) {
@@ -15,7 +19,12 @@ func (r *SignUpUseCase) SignUp() (*authdto.RegisterOutputDto, error) {
 		return nil, existedErr
 	}
 
+	if insertErr := r.createUser(); insertErr != nil {
+		return nil, insertErr
+	}
+
 	result := authdto.RegisterOutputDto{
+		Id:       r.Id,
 		Username: r.Username,
 	}
 

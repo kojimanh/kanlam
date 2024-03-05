@@ -6,5 +6,6 @@ type RegisterInputDto struct {
 }
 
 type RegisterOutputDto struct {
+	Id       string `json:"id"`
 	Username string `json:"username"`
 }
