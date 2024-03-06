@@ -11,4 +11,9 @@ type DbConfig struct {
 type ConfigKeyMap struct {
 	ServerHost  string
 	DbConfigUrl string
+	JwtSecret   string
+}
+
+type JwtConfig struct {
+	Secret string
 }

@@ -34,3 +34,11 @@ func GetDbConfig() entity.DbConfig {
 		Url: dbConfigUrl,
 	}
 }
+
+func GetJwtConfig() entity.JwtConfig {
+	secretConfig := os.Getenv(constant.ConfigKeyMap.JwtSecret)
+
+	return entity.JwtConfig{
+		Secret: secretConfig,
+	}
+}
