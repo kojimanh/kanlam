@@ -9,6 +9,10 @@ import (
 func signIn(c *fiber.Ctx) error {
 	signInUseCase := new(signinusecase.SignInUseCase)
 
+	if parseErr := lib.ParseBody(c, signInUseCase); parseErr != nil {
+		return lib.BuildResponse(c, nil, parseErr)
+	}
+
 	res, err := signInUseCase.SignIn()
 
 	return lib.BuildResponse(c, res, err)
